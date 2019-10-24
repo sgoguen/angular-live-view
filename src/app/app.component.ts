@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { BehaviorSubject, Subscription, Observable } from "rxjs";
+import { BehaviorSubject, Subscription, Observable, interval } from "rxjs";
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -10,12 +10,16 @@ import { map } from 'rxjs/operators';
 export class AppComponent {
   name = "Test App";
   liveData = {
-    x: this.createSubject("liveData", 1000),
-    // y: this.createSubject("liveData", 100),
-    // z: this.createSubject("liveData", 200).pipe(
-    //   map(x => ({ x, dbl: (x * x) }))
-    // ),
-    g: this.gen(200)
+    x: interval(1000),
+    y: interval(100),
+    z: interval(1000).pipe(
+      map(x => ({ 
+        x, 
+        sq: (x * x),
+        ob: interval(100)
+       }))
+    ),
+    // g: this.gen(200)
   };
 
   constructor() {
@@ -29,19 +33,8 @@ export class AppComponent {
     }
   }
 
-  createSubject(name: string, ms: number) {
-    const subject = new BehaviorSubject("Initial");
-    doLoop();
-    return subject;
-
-    async function doLoop() {
-      let x = 1;
-      while (true) {
-        await delay(ms);
-        subject.next(x.toString());
-        x += 1;
-      }
-    }
+  createSubject(ms: number) {
+    return interval(ms);
   }
 
   identify(x: any) {
