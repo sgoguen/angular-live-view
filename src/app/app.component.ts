@@ -11,11 +11,22 @@ export class AppComponent {
   name = "Test App";
   liveData = {
     x: this.createSubject("liveData", 1000),
-    y: this.createSubject("liveData", 100)
+    // y: this.createSubject("liveData", 100),
+    // z: this.createSubject("liveData", 200).pipe(
+    //   map(x => ({ x, dbl: (x * x) }))
+    // ),
+    g: this.gen(200)
   };
-  liveData2 = this.createSubject("liveData2", 100);
 
   constructor() {
+  }
+
+  async *gen(ms) {
+    let value = false;
+    while(true) {
+      yield value;
+      await delay(ms);
+    }
   }
 
   createSubject(name: string, ms: number) {
