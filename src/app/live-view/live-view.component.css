@@ -1,0 +1,26 @@
+table.grid {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table.grid tr {
+  border: 1px solid black;
+}
+
+table.grid th {
+  font-weight: bold;
+  border: 1px solid black;
+  padding: 3px;
+  vertical-align: top;
+}
+
+table.grid td {
+  border: 1px solid black;
+  padding: 3px;
+  vertical-align: top;
+}
+
+.live {
+  border: 1px solid green;
+}

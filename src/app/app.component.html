@@ -1,5 +1,8 @@
 <p>
   Start editing to see some magic happen :)
 </p>
-<hello name="{{ name }}"></hello>
-<live-view value="{{ name }}"></live-view>
+<!-- <hello name="{{ name }}"></hello> -->
+<live-view [value]="liveData"></live-view>
+
+<!-- <div>{{ liveData | async }}</div> -->
+<!-- <div>{{ identify(liveData2) }}</div> -->
